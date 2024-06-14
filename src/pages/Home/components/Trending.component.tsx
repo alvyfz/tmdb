@@ -16,7 +16,7 @@ export const Trending = memo(() => {
   } = useTrending()
   return (
     <div className="px-8">
-      <div className="flex flex-row  gap-5 mt-8 mb-4 items-center">
+      <div className="flex md:flex-row flex-col  md:gap-5 mt-8 mb-4 items-center">
         <h2 className="font-semibold text-3xl ">Trending</h2>
         <div className="flex flex-row gap-2 mt-3 items-center">
           <Chip.Group
