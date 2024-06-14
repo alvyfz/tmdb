@@ -14,6 +14,7 @@ export const TopRated = memo(() => {
     isLoading,
     onChangePagination,
     pages,
+    maxPage,
   } = useTopRated()
   return (
     <div className="px-8">
@@ -37,16 +38,18 @@ export const TopRated = memo(() => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-6 sm:grid-cols-4 xl:grid-cols-8 grid-cols-2  w-full gap-2">
+      <div className="grid md:grid-cols-6 sm:grid-cols-4 xl:grid-cols-8 grid-cols-2  w-full xl:gap-6 md:gap-4 sm:gap-2 gap-2">
         {isLoading
           ? Array.from(Array(20).keys())?.map((item) => (
-              <CardGrid item={undefined} />
+              <CardGrid item={undefined} isLoading={isLoading} />
             ))
-          : dataTopRated?.data?.map((item) => <CardGrid item={item} />)}
+          : dataTopRated?.data?.map((item) => (
+              <CardGrid item={item} isLoading={isLoading} />
+            ))}
       </div>
       <div className="flex flex-row justify-center  pb-5 pt-2">
         <Pagination
-          total={dataTopRated?.maxPage}
+          total={maxPage}
           value={pages}
           onChange={onChangePagination}
           color="black"

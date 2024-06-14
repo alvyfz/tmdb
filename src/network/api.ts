@@ -39,6 +39,26 @@ export function getPopular({ page, type }: trendingParams) {
       throw error
     })
 }
+
+export function getSearchMulti({ page, search }: trendingParams) {
+  return axios({
+    method: 'get',
+    url: `${baseUrl}/search/multi`,
+    params: {
+      api_key: apiKey,
+      page: page,
+      language: 'en-US',
+      query: search,
+    },
+  })
+    .then(function (response) {
+      return response.data
+    })
+    .catch(function (error) {
+      throw error
+    })
+}
+
 export function getTopRated({ page, type }: trendingParams) {
   return axios({
     method: 'get',

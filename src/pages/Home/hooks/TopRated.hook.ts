@@ -10,6 +10,7 @@ export const useTopRated = () => {
   const [dataTopRated, setDataTopRated] = useState<any>(undefined)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [pages, setPages] = useState<Number>(1)
+  const maxPage = 500
 
   const fetchTopRated = useCallback(
     ({ page }: { page?: number }) => {
@@ -33,17 +34,6 @@ export const useTopRated = () => {
     }
   }, [selectedPopular])
 
-  const onReachEnd = useCallback(() => {
-    console.log('fetch more')
-    if (
-      !isLoading &&
-      !!dataTopRated &&
-      dataTopRated?.page <= dataTopRated?.maxPage
-    ) {
-      fetchTopRated({})
-    }
-  }, [dataTopRated, isLoading, fetchTopRated])
-
   const onChangePagination = (value: number) => {
     setDataTopRated(undefined)
     setPages(value)
@@ -54,10 +44,10 @@ export const useTopRated = () => {
     selectedPopular,
     setSelectedPopular,
     dataTopRated,
-    onReachEnd,
     setDataTopRated,
     isLoading,
     onChangePagination,
     pages,
+    maxPage,
   }
 }

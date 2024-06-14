@@ -13,3 +13,12 @@
     object-fit: cover;
     border-radius: 15px;
   }
+
+.card {
+    width: 100%;
+    height: auto;
+}
+
+.h80 {
+    height: 80%;
+}

@@ -5,25 +5,31 @@ import moment from 'moment'
 import { Skeleton } from '@mantine/core'
 
 export const CardMovie = (item) => {
-  const dummyImage = 'bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg'
   return (
     <SwiperSlide>
-      <Skeleton visible={!item} className="skeleton-img">
+      <Skeleton
+        animate
+        visible={!item?.poster_path}
+        height={'80%'}
+        width={'100%'}
+      >
         <img
-          src={`https://www.themoviedb.org/t/p/original/${item?.poster_path || dummyImage}`}
+          src={`https://www.themoviedb.org/t/p/original/${item?.poster_path || item?.backdrop_path}`}
           alt={item?.title}
+          className="skeleton-img"
         />
       </Skeleton>
-      <div className="flex-col flex justify-start">
-        <div className=" mt-1">
-          <Skeleton visible={!item}>
-            <span className="  font-semibold text-md  leading-none">
+      <div className="flex-col flex justify-start h-[20%]">
+        <div className=" mt-1 ">
+          <Skeleton visible={!item} animate>
+            <span className="text  font-semibold text-md  leading-none">
               {item?.title || item?.original_name}
             </span>
           </Skeleton>
-
-          <Skeleton visible={!item}>
-            <span className=" text-sm  ">
+        </div>
+        <div>
+          <Skeleton visible={!item} animate>
+            <span className="mt-1 text-sm  ">
               {moment(item?.release_date).format('DD MMM YYYY')}
             </span>
           </Skeleton>

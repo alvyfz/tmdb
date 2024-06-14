@@ -1,17 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const commonSlice = createSlice({
-  name: "common",
+  name: 'common',
   initialState: {
-    isOpenSidebar: true,
+    search: '',
   },
   reducers: {
-    setIsOpenSidebar: (state, action) => {
-      state.isOpenSidebar = action.payload;
+    setSearch: (state, action) => {
+      state.search = action.payload
     },
   },
-});
+})
 
-export const { setIsOpenSidebar } = commonSlice.actions;
+export const { setSearch } = commonSlice.actions
 
-export default commonSlice.reducer;
+export default commonSlice.reducer

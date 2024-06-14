@@ -1,28 +1,32 @@
 import { Skeleton } from '@mantine/core'
 import moment from 'moment'
 
-export const CardGrid = ({ item }) => {
-  const dummyImage = 'bvYjhsbxOBwpm8xLE5BhdA3a8CZ.jpg'
-
+export const CardGrid = ({ item, isLoading }) => {
   return (
-    <div>
-      <Skeleton visible={!item} className="skeleton-img">
+    <div className="card">
+      <Skeleton
+        animate
+        visible={isLoading || !item?.poster_path}
+        height={'80%'}
+        width={'100%'}
+      >
         <img
-          src={`https://www.themoviedb.org/t/p/original/${item?.poster_path || dummyImage}`}
+          src={`https://www.themoviedb.org/t/p/original/${item?.poster_path || item?.backdrop_path}`}
           alt={item?.title}
-          className="skeleton-img "
+          className="skeleton-img"
         />
       </Skeleton>
-      <div className="flex-col flex justify-start">
-        <div className=" mt-1">
-          <Skeleton visible={!item}>
-            <span className="  font-semibold text-md  leading-none">
+      <div className="flex-col flex justify-start h-[20%]">
+        <div className=" mt-1 ">
+          <Skeleton visible={isLoading || !item} animate>
+            <span className="text  font-semibold text-md  leading-none">
               {item?.title || item?.original_name}
             </span>
           </Skeleton>
-
-          <Skeleton visible={!item}>
-            <span className=" text-sm  ">
+        </div>
+        <div>
+          <Skeleton visible={isLoading || !item} animate>
+            <span className="mt-1 text-sm  ">
               {moment(item?.release_date).format('DD MMM YYYY')}
             </span>
           </Skeleton>

@@ -1,9 +1,8 @@
-import React, { useState, ReactNode } from "react";
-import Header from "../components/Header/index";
-import Sidebar from "../components/Sidebar/index";
+import React, { useState, ReactNode } from 'react'
+import Header from '../components/Header/index'
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
@@ -14,11 +13,14 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
             <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
               {children}
             </div>
+            <h5 className="text-center my-4">
+              © 2024 MUHAMMAD ALVY EKA FAUZI
+            </h5>
           </main>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DefaultLayout;
+export default DefaultLayout
