@@ -1,7 +1,7 @@
 import { Chip, Group } from '@mantine/core'
 import { memo } from 'react'
 import { SwiperComponent } from '../../../components/Swiper/Swiper'
-import { TrendingEnum } from '../../../types/home'
+import { MovieTypeEnum, TrendingEnum } from '../../../types/home'
 import { CardMovie } from '../../../components/Card/CardMovie'
 import { useTrending } from '../hooks/Trending.hook'
 
@@ -41,6 +41,7 @@ export const Trending = memo(() => {
           renderItem={CardMovie}
           onReachEnd={onReachEndSwiperTrending}
           isLoading={isLoadingTrending && !dataTrending}
+          type={MovieTypeEnum.MOVIE}
         />
       </div>
     </div>

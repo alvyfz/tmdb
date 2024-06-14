@@ -41,6 +41,7 @@ export const Popular = memo(() => {
           renderItem={CardMovie}
           onReachEnd={onReachEndSwiper}
           isLoading={isLoading && !dataPopular}
+          type={selectedPopular}
         />
       </div>
     </div>

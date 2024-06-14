@@ -1,9 +1,27 @@
 import { Skeleton } from '@mantine/core'
 import moment from 'moment'
+import { useNavigate } from 'react-router-dom'
+import { MovieTypeEnum } from '../../types/home'
 
-export const CardGrid = ({ item, isLoading }) => {
+export const CardGrid = ({
+  item,
+  isLoading,
+  type,
+}: {
+  item: any
+  isLoading: boolean
+  type: MovieTypeEnum
+}) => {
+  const navigate = useNavigate()
   return (
-    <div className="card">
+    <div
+      className="card cursor-pointer"
+      onClick={() => {
+        if (!['movie', 'tv'].includes(item?.media_type) || type) {
+          navigate(`/${type}/${item?.id}`)
+        }
+      }}
+    >
       <Skeleton
         animate
         visible={isLoading || !item?.poster_path}
@@ -26,9 +44,11 @@ export const CardGrid = ({ item, isLoading }) => {
         </div>
         <div>
           <Skeleton visible={isLoading || !item} animate>
-            <span className="mt-1 text-sm  ">
-              {moment(item?.release_date).format('DD MMM YYYY')}
-            </span>
+            {item?.release_date && (
+              <span className="mt-1 text-sm  ">
+                {moment(item?.release_date).format('DD MMM YYYY')}
+              </span>
+            )}
           </Skeleton>
         </div>
       </div>

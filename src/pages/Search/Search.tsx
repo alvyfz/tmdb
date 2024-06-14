@@ -21,13 +21,17 @@ export const Search = () => {
           </h2>
         ) : (
           <>
-            <div className="grid md:grid-cols-6 sm:grid-cols-4 xl:grid-cols-8 grid-cols-2  w-full gap-2">
+            <div className="grid md:grid-cols-6 sm:grid-cols-4 xl:grid-cols-8 grid-cols-2  w-full xl:gap-6 md:gap-4 sm:gap-2 gap-2">
               {isLoading
                 ? Array.from(Array(20).keys())?.map((item) => (
-                    <CardGrid item={undefined} isLoading={isLoading} />
+                    <CardGrid item={undefined} isLoading={isLoading} type="" />
                   ))
                 : data?.data?.map((item) => (
-                    <CardGrid item={item} isLoading={isLoading} />
+                    <CardGrid
+                      item={item}
+                      isLoading={isLoading}
+                      type={item?.media_type}
+                    />
                   ))}
             </div>
             <div className="flex flex-row justify-center  pb-5 pt-2">

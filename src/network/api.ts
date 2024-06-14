@@ -94,38 +94,19 @@ export function getTrendingWeek({ page }: trendingParams) {
     })
 }
 
-export function getMovies(setData, setLoading, setSearchData, page, setPage) {
-  setLoading(true)
+export function getDetail({ type, id }: trendingParams) {
   return axios({
     method: 'get',
-    url: `https://api.themoviedb.org/3/movie/upcoming?api_key=2fccde01a371b106b09a241d6d1d5b49&page=${page}`,
+    url: `${baseUrl}/${type}/${id}`,
+    params: {
+      api_key: apiKey,
+      language: 'en-US',
+    },
   })
     .then(function (response) {
-      setData(response.data.results)
-      setSearchData(response.data.results)
-      setPage(response.data.page)
+      return response.data
     })
     .catch(function (error) {
-      console.log(error)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
-}
-
-export function getDetailMovie(setData, setLoading, id) {
-  setLoading(true)
-  return axios({
-    method: 'get',
-    url: `https://api.themoviedb.org/3/movie/${id}?api_key=2fccde01a371b106b09a241d6d1d5b49&page=1`,
-  })
-    .then(function (response) {
-      setData(response.data)
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-    .finally(() => {
-      setLoading(false)
+      throw error
     })
 }

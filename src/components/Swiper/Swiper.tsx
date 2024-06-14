@@ -10,18 +10,22 @@ import 'swiper/css/scrollbar'
 
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules'
+import { MovieTypeEnum } from '../../types/home'
+import { CardMovie } from '../Card/CardMovie'
 
 type TSwiperComponent = {
   data: any[]
   renderItem: React.Component
   onReachEnd?: () => void
   isLoading: boolean
+  type: MovieTypeEnum
 }
 export const SwiperComponent = ({
   data,
   renderItem,
   isLoading,
   onReachEnd,
+  type,
 }: TSwiperComponent) => {
   const loadingData = Array.from(Array(10).keys())
   return (
@@ -56,8 +60,16 @@ export const SwiperComponent = ({
       onDragEnd={() => console.log('end')}
     >
       {isLoading
-        ? loadingData.map(() => renderItem(undefined))
-        : data?.map((item) => renderItem(item))}
+        ? loadingData.map(() => (
+            <SwiperSlide>
+              <CardMovie item={undefined} type={type} />
+            </SwiperSlide>
+          ))
+        : data?.map((item) => (
+            <SwiperSlide>
+              <CardMovie item={item} type={type} />
+            </SwiperSlide>
+          ))}
     </Swiper>
   )
 }

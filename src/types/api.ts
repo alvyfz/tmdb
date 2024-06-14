@@ -1,5 +1,6 @@
 export type trendingParams = {
-  page: number
+  page?: number
   type?: string
   search?: string
+  id?: string
 }

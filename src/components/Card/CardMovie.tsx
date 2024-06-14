@@ -3,10 +3,26 @@ import { SwiperSlide } from 'swiper/react'
 import './styles.css'
 import moment from 'moment'
 import { Skeleton } from '@mantine/core'
+import { useNavigate } from 'react-router-dom'
+import { MovieTypeEnum } from '../../types/home'
 
-export const CardMovie = (item) => {
+export const CardMovie = ({
+  item,
+  type,
+}: {
+  item: any
+  type: MovieTypeEnum
+}) => {
+  const navigate = useNavigate()
   return (
-    <SwiperSlide>
+    <div
+      onClick={() => {
+        if (item?.id) {
+          navigate(`/${type}/${item?.id}`)
+        }
+      }}
+      className="cursor-pointer"
+    >
       <Skeleton
         animate
         visible={!item?.poster_path}
@@ -35,6 +51,6 @@ export const CardMovie = (item) => {
           </Skeleton>
         </div>
       </div>
-    </SwiperSlide>
+    </div>
   )
 }

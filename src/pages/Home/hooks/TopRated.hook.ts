@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { MovieTypeEnum } from '../../../types/home'
-import { getPopular } from '../../../network/api'
+import { getTopRated } from '../../../network/api'
 
 export const useTopRated = () => {
   const [selectedPopular, setSelectedPopular] = useState<MovieTypeEnum>(
@@ -10,12 +10,12 @@ export const useTopRated = () => {
   const [dataTopRated, setDataTopRated] = useState<any>(undefined)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [pages, setPages] = useState<Number>(1)
-  const maxPage = 500
+  const maxPage = dataTopRated?.maxPage || 1
 
   const fetchTopRated = useCallback(
     ({ page }: { page?: number }) => {
       setIsLoading(true)
-      getPopular({ page: page, type: selectedPopular })
+      getTopRated({ page: page, type: selectedPopular })
         .then((result) => {
           setDataTopRated({
             data: result?.results,

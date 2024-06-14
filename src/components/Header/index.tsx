@@ -2,6 +2,8 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import DarkModeSwitcher from './DarkModeSwitcher'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearch } from '../../redux/commonSlice'
+import logo from '../../images/logo/icon.svg'
+import { useEffect } from 'react'
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined
@@ -14,6 +16,12 @@ const Header = (props: {
 
   const location = useLocation()
 
+  useEffect(() => {
+    if (!location?.pathname.includes('search')) {
+      dispatch(setSearch(''))
+    }
+  }, [])
+
   return (
     <header className="sticky top-0 z-999 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none ">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11 mx-auto max-w-screen-2xl">
@@ -23,7 +31,7 @@ const Header = (props: {
             navigate('/')
           }}
         >
-          <div>Logo</div>
+          <img src={logo} width={50} />
         </button>
 
         <div className=" sm:block flex">
